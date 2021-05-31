@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "dev": "webpack --mode=development"
+    "dev": "webpack --mode=development",
+    "build": "webpack --mode=production && git commit -am \"before upload\" && git push origin HEAD"
   },
   "name": "markdown-editor",
   "version": "1.0.0",
