@@ -1,19 +1,20 @@
-import * as React from 'react'
-import { render } from 'react-dom'
-import { createGlobalStyle } from 'styled-components'
+import * as React from 'react';
+import { render } from 'react-dom';
+import { createGlobalStyle } from 'styled-components';
 import { Editor } from './pages/Editor';
 
 const GlobalStyle = createGlobalStyle`
   body * {
     box-sizing: border-box;
   }
-`
+`;
+console.log('Hello');
 
 const Main = (
   <React.Fragment>
     <GlobalStyle />
-    <Editor/>
-  </React.Fragment>)
+    <Editor />
+  </React.Fragment>
+);
 
-
-render(Main, document.getElementById('app'))
+render(Main, document.getElementById('app'));
