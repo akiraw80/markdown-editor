@@ -1,7 +1,12 @@
-import * as React from 'react'
+import React from 'react'
 import styled from 'styled-components'
+import {useStateWithStorage} from '../hooks/use_state_with_storage'
+
+const StorageKey: string = 'page/editor:text';
+
 
 export const Editor: React.FC = () => {
+  const [text, setText] = useStateWithStorage('', StorageKey);
   
   return (
     <React.Fragment>
@@ -9,7 +14,7 @@ export const Editor: React.FC = () => {
         Markdown Editor
       </Header>
       <Wrapper>
-        <TextArea value="テキストエリアです"/>
+        <TextArea value={text} onChange={(ev) => setText(ev.target.value)}/>
         <Preview>プレビューエリア</Preview>
       </Wrapper>
     </React.Fragment>
