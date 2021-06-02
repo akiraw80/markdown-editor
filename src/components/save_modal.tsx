@@ -1,8 +1,6 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Button } from './button';
-
-const { useState } = React;
 
 const Wrapper = styled.div`
   align-items: center;
@@ -39,6 +37,29 @@ interface Props {
 }
 
 export const SaveModal: React.FC<Props> = (props) => {
-  const { onCancel, onSave } = props;
-  return <div></div>;
+  console.log('render save_modal.tsx');
+  const { onSave, onCancel } = props;
+  const [title, setTitle] = useState(new Date().toISOString());
+
+  return (
+    <Wrapper>
+      <Modal>
+        <p>テキスト内容を保存します</p>
+        <p>タイトルを入力し、保存ボタンをクリックしてください</p>
+        <p>
+          <TitleInput
+            type="text"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          ></TitleInput>
+        </p>
+        <Control>
+          <Button onClick={onCancel} cancel>
+            キャンセル
+          </Button>
+          <Button onClick={() => onSave(title)}>保存</Button>
+        </Control>
+      </Modal>
+    </Wrapper>
+  );
 };

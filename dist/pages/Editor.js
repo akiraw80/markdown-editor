@@ -1,17 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { useStateWithStorage } from '../hooks/use_state_with_storage';
 import ReactMarkdown from 'react-markdown';
+import { putMemo } from '../indexeddb/memos';
+import { Button } from '../components/button';
+import { SaveModal } from '../components/save_modal';
 const StorageKey = 'page/editor:text';
 export const Editor = () => {
+    console.log('render Editor.tsx');
     const [text, setText] = useStateWithStorage('', StorageKey);
+    const [showModal, setShowModal] = useState(false);
     return (React.createElement(React.Fragment, null,
-        React.createElement(Header, null, "Markdown Editor"),
+        React.createElement(Header, null,
+            "Markdown Editor",
+            React.createElement(HeaderControl, null,
+                React.createElement(Button, { onClick: () => setShowModal(true) }, "\u4FDD\u5B58\u3059\u308B"))),
         React.createElement(Wrapper, null,
             React.createElement(TextArea, { value: text, onChange: (ev) => setText(ev.target.value) }),
-            React.createElement(ReactMarkdown, null, text))));
+            React.createElement(Preview, null,
+                React.createElement(ReactMarkdown, null, text))),
+        showModal && (React.createElement(SaveModal, { onSave: (title) => {
+                putMemo(title, text);
+                setShowModal(false);
+            }, onCancel: () => setShowModal(false) }))));
 };
 const Header = styled.header `
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-size: 1.5rem;
   height: 2rem;
   left: 0;
@@ -20,6 +36,11 @@ const Header = styled.header `
   position: fixed;
   right: 0;
   top: 0;
+`;
+const HeaderControl = styled.div `
+  height: 2rem;
+  display: flex;
+  align-content: center;
 `;
 const Wrapper = styled.div `
   bottom: 0;

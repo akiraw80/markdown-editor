@@ -25,7 +25,8 @@ interface Props {
 }
 
 export const Button: React.FC<Props> = (props) => {
-  console.log("asfasd'f");
+  console.log('render button.tsx');
+
   return (
     <StyledButton
       onClick={props.onClick}
