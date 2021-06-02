@@ -1,0 +1,14 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 14,
+  "editor.tabSize": 2,
+  "files.autoSave": "afterDelay",
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.tree.indent": 16,
+  "explorer.confirmDelete": false,
+
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+
+}
